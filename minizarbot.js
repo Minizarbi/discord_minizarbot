@@ -67,7 +67,11 @@ bot.on("message", function (msg) {
 						return;
 					}
 					if (res.status == 0) { /* If the regex matched */
-						bot.sendMessage(msg.channel, res.stdout);
+						if (messages[i].author == bot.user) {
+							bot.updateMessage(messages[i], res.stdout);
+						} else {
+							bot.sendMessage(msg.channel, res.stdout);
+						}
 						return;
 					}
 					i++;
